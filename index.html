@@ -22,13 +22,11 @@
         <input type="submit" value="OK">
     </form>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     <p id="responseMessage" style="display:none;">Thank you! Your submission has been received.</p>
     
     <script>
-        var submitted = false;
-        window.onload = function() {
-            // Set the current date and time to the hidden datetime input field
+        document.addEventListener('DOMContentLoaded', function() {
+
             var now = new Date();
             var year = now.getFullYear();
             var month = ('0' + (now.getMonth() + 1)).slice(-2);
@@ -41,11 +39,26 @@
             
             document.getElementById('date').value = currentDate;
             document.getElementById('time').value = currentTime;
-        };
-        document.getElementById('submissionForm').addEventListener('submit', function() {
-        document.getElementById('submissionForm').style.display = 'none';
-        document.getElementById('responseMessage').style.display = 'block';
+            
+            // Handle form submission
+        document.getElementById('submissionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var form = event.target;
+            var data = new FormData(form);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    form.style.display = 'none';
+                    document.getElementById('responseMessage').style.display = 'block';
+                }
+            };
+            xhr.send(data);
         });
+    });
+        
     </script>
 
 </body>
