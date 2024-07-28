@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logbook PPM Al-Fath</title>
+</head>
+<body>
+    
+    <h2>Form Submission</h2>
+    <form id="submissionForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeC0uQ5CwoZZJVoMyFpm56aZt3axoU409fGXe4tCgvpCmJCcQ/formResponse" method="post">
+        <label for="dropdown">Nama:</label>
+        <select id="dropdown" name="entry.111778279">
+            <option value="Option 1">Tester 1</option>
+            <option value="Option 2">Tester 2</option>
+            <option value="Option 3">Tester 3</option>
+        </select>
+        
+        <input type="hidden" id="date" name="entry.589949190">
+        <input type="hidden" id="time" name="entry.998383237">
+        
+        <input type="submit" value="OK">
+    </form>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { window.location='logbook.html'; }"></iframe>
+    
+    <script>
+        var submitted = false;
+        window.onload = function() {
+            // Set the current date and time to the hidden datetime input field
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = ('0' + (now.getMonth() + 1)).slice(-2);
+            var day = ('0' + now.getDate()).slice(-2);
+            var hours = ('0' + now.getHours()).slice(-2);
+            var minutes = ('0' + now.getMinutes()).slice(-2);
+
+            var currentDate = year + '-' + month + '-' + day;
+            var currentTime = hours + ':' + minutes;
+            
+            document.getElementById('date').value = currentDate;
+            document.getElementById('time').value = currentTime;
+        };
+    </script>
+
+</body>
+</html>
