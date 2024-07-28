@@ -22,7 +22,8 @@
         <input type="submit" value="OK">
     </form>
 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { window.location='logbook.html'; }"></iframe>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <p id="responseMessage" style="display:none;">Thank you! Your submission has been received.</p>
     
     <script>
         var submitted = false;
@@ -41,6 +42,10 @@
             document.getElementById('date').value = currentDate;
             document.getElementById('time').value = currentTime;
         };
+        document.getElementById('submissionForm').addEventListener('submit', function() {
+        document.getElementById('submissionForm').style.display = 'none';
+        document.getElementById('responseMessage').style.display = 'block';
+        });
     </script>
 
 </body>
