@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logbook PPM Al-Fath</title>
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
 <body>
     
     <h2>Silahkan Pilih Nama</h2>
-    <form id="submissionForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeC0uQ5CwoZZJVoMyFpm56aZt3axoU409fGXe4tCgvpCmJCcQ/formResponse" method="post">
+    <form id="submissionForm">
         <label for="dropdown">Nama:</label>
-        <select id="dropdown" name="entry.111778279">
+        <select id="dropdown" name="dropdown">
             <option value="Option 1">Tester 1</option>
             <option value="Option 2">Tester 2</option>
             <option value="Option 3">Tester 3</option>
         </select>
         
-        <input type="hidden" id="date" name="entry.589949190">
-        <input type="hidden" id="time" name="entry.998383237">
-        <input type="hidden" value="354313" name="entry.561087913">
+        <label for="qrdata">QR Code:</label>
+        <input type="text" id="qrdata" name="qrdata" readonly>
+        
+        <input type="hidden" id="date" name="date">
+        <input type="hidden" id="time" name="time">
         
         <input type="submit" value="OK">
     </form>
@@ -29,40 +32,53 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+            // Set the current date and time to the hidden datetime input field
             var now = new Date();
             var year = now.getFullYear();
             var month = ('0' + (now.getMonth() + 1)).slice(-2);
             var day = ('0' + now.getDate()).slice(-2);
             var hours = ('0' + now.getHours()).slice(-2);
             var minutes = ('0' + now.getMinutes()).slice(-2);
-
+    
             var currentDate = year + '-' + month + '-' + day;
             var currentTime = hours + ':' + minutes;
-            
+    
             document.getElementById('date').value = currentDate;
             document.getElementById('time').value = currentTime;
-            
+    
             // Handle form submission
-        document.getElementById('submissionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            var form = event.target;
-            var data = new FormData(form);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://docs.google.com/forms/d/e/1FAIpQLSeC0uQ5CwoZZJVoMyFpm56aZt3axoU409fGXe4tCgvpCmJCcQ/formResponse', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
+            document.getElementById('submissionForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                var form = event.target;
+                var data = new FormData(form);
+    
+                fetch('https://absenppm.5jx45n6rx7.workers.dev/', {
+                    method: 'POST',
+                    body: data
+                })
+                .then(response => response.text())
+                .then(data => {
                     form.style.display = 'none';
                     document.getElementById('responseMessage').style.display = 'block';
-                }
-            };
-            xhr.send(data);
+                })
+                .catch(error => console.error('Error:', error));
+            });
+    
+            // QR code reader setup
+            function onScanSuccess(decodedText, decodedResult) {
+                // Handle the scanned code as you like, for example:
+                document.getElementById('qrdata').value = decodedText;
+    
+                // Stop scanning after a successful scan
+                html5QrcodeScanner.clear();
+            }
+    
+            const html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+            html5QrcodeScanner.render(onScanSuccess);
         });
-    });
-        
     </script>
 
-</body>
+    <</body>
 </html>
