@@ -73,9 +73,9 @@
                         // Status
                         const tdCode = document.createElement('td');
                         tdStatus.textContent = row[3];
-                        if (row[2].toUpperCase() === 'BERANGKAT') {
+                        if (row[3].toUpperCase() === 'BERANGKAT') {
                             tr.classList.add('status-berangkat');
-                        } else if (row[2].toUpperCase() === 'PULANG') {
+                        } else if (row[3].toUpperCase() === 'PULANG') {
                             tr.classList.add('status-pulang');
                         }
                         tr.appendChild(tdCode);
