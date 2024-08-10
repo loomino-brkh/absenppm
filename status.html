@@ -62,17 +62,17 @@
 
                         // Tanggal
                         const tdTanggal = document.createElement('td');
-                        tdTanggal.textContent = row[0];
+                        tdTanggal.textContent = row[1];
                         tr.appendChild(tdTanggal);
 
                         // Jam
                         const tdJam = document.createElement('td');
-                        tdJam.textContent = row[1];
+                        tdJam.textContent = row[2];
                         tr.appendChild(tdJam);
 
                         // Status
                         const tdCode = document.createElement('td');
-                        tdStatus.textContent = row[2];
+                        tdStatus.textContent = row[3];
                         if (row[2].toUpperCase() === 'BERANGKAT') {
                             tr.classList.add('status-berangkat');
                         } else if (row[2].toUpperCase() === 'PULANG') {
@@ -82,7 +82,7 @@
 
                         // Nama
                         const tdNama = document.createElement('td');
-                        tdNama.textContent = row[3];
+                        tdNama.textContent = row[4];
                         tr.appendChild(tdNama);
 
                         tableBody.appendChild(tr);
