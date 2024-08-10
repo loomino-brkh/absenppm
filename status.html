@@ -44,7 +44,7 @@
         // Google Sheet ID and API key
         const sheetId = '2PACX-1vQlL1e8H8wq772L0FbZZs70H4ehv64vHPIUkhU1WF-7yjCnkcH17mfhe6RGiqP1w4bKB6LLXTXUwyhT';
         const apiKey = 'AIzaSyDi0_hNIW2QHkqWuAnfodtSPbNx2pQSA-M';
-        const sheetName = 'Form Responses 1';
+        const sheetName = 'logbook';
 
         function fetchData() {
             fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(sheetName)}?key=${apiKey}`)
