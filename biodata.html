@@ -1,296 +1,215 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi Ulang Santri PPM</title>
     <style>
-        /* General styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #000000;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: black;
             margin: 0;
             padding: 0;
         }
-
         .container {
-            max-width: 500px;
-            margin: 0 auto;
+            max-width: 400px;
+            margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        /* Title styling */
-        h1, h2 {
+        h1 {
+            text-align: center;
             font-size: 24px;
             font-weight: bold;
-            text-align: center;
-            color: #000000;
-            margin-bottom: 20px;
+            color: green;
         }
-
-        /* Button styling */
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #4CAF50; /* Green color */
-            border: none;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Input field styling */
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            color: #000000;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cccccc;
-            border-radius: 10px;
-            font-size: 16px;
-            color: #000000;
-            box-sizing: border-box;
-        }
-
-        input[type="text"]::placeholder {
-            color: #cccccc;
-        }
-
-        /* Review data styling */
-        #reviewData {
-            font-size: 16px;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        /* Buttons container styling */
         .buttons {
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
-
-        /* Specific adjustments for mobile devices */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-                margin-top: 30px;
-            }
-
-            .btn {
-                font-size: 16px;
-                padding: 8px 16px;
-            }
-
-            label {
-                font-size: 14px;
-            }
-
-            input[type="text"],
-            input[type="date"],
-            input[type="tel"],
-            select {
-                padding: 8px;
-                font-size: 14px;
-            }
+        .btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:active {
+            background-color: darkgreen;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: green;
         }
     </style>
 </head>
 <body>
-    <div id="page1" class="container">
-        <h1>Registrasi Ulang Santri PPM</h1>
+
+<div id="page1" class="container">
+    <h1>Registrasi Ulang Santri PPM</h1>
+    <div class="buttons">
         <button class="btn" onclick="storeButtonData('Mubaligh/ot')">Mubaligh/ot</button>
         <button class="btn" onclick="storeButtonData('Bukan Mubaligh/ot')">Bukan Mubaligh/ot</button>
     </div>
+</div>
 
-    <div id="page2" class="container" style="display: none;">
-        <form id="registrationForm">
-            <input type="hidden" name="entry.346979211" id="userType" value="">
+<div id="page2" class="container" style="display:none;">
+    <h1>Formulir Pendaftaran</h1>
+    <form id="registrationForm" onsubmit="submitForm(); return false;">
+        <input type="text" name="entry.333390741" placeholder="Nama Lengkap" required>
+        <input type="text" name="entry.2036095132" placeholder="Nama Panggilan" required>
+        <select name="entry.533201074" required>
+            <option value="">Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+        <input type="text" name="entry.406062476" placeholder="Tempat Lahir" required>
+        <input type="date" name="entry.1863767854" required>
+        <input type="text" name="entry.189275634" placeholder="Universitas" required>
+        <select name="entry.813622580" required>
+            <option value="">Tahun Masuk Universitas</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+        </select>
+        <select name="entry.1083384693" required>
+            <option value="">Tahun Masuk PPM</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+        </select>
+        <input type="text" name="entry.193415501" placeholder="Jurusan" required>
+        <input type="text" name="entry.633936452" placeholder="Alamat Asal" required>
+        <input type="text" name="entry.150755552" placeholder="Asal Sambung - Daerah" required>
+        <input type="text" name="entry.601479644" placeholder="Asal Sambung - Desa" required>
+        <input type="text" name="entry.2045342021" placeholder="Asal Sambung - Kelompok" required>
+        <input type="text" name="entry.727261729" placeholder="Nomor Hape" required>
+        <input type="text" name="entry.1468733244" placeholder="Nama Orang Tua / Wali Saat Emergency" required>
+        <input type="text" name="entry.1587809421" placeholder="Nomor Hape / Telepon Orang Tua / Wali Saat Emergency" required>
 
-            <label>Nama Lengkap</label>
-            <input type="text" name="entry.333390741" required>
+        <div class="buttons">
+            <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
+            <button type="submit" class="btn">Ok</button>
+        </div>
+    </form>
+</div>
 
-            <label>Nama Panggilan</label>
-            <input type="text" name="entry.2036095132" required>
+<div id="page3" class="container" style="display:none;">
+    <h1>Review Data</h1>
+    <div id="reviewData"></div>
 
-            <label>Jenis Kelamin</label>
-            <select name="entry.533201074" required>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
+    <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
+    <input type="text" name="entry.100977078" placeholder="tulis nama sebagai tanda tangan" required>
 
-            <label>Tempat Lahir</label>
-            <input type="text" name="entry.406062476" required>
-
-            <label>Tanggal Lahir</label>
-            <input type="date" name="entry.1863767854" required>
-
-            <label>Universitas</label>
-            <input type="text" name="entry.189275634" required>
-
-            <label>Tahun Masuk Universitas</label>
-            <select name="entry.813622580" required>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-            </select>
-
-            <label>Tahun Masuk PPM</label>
-            <select name="entry.1083384693" required>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024">2024</option>
-                <option value="2025">2025</option>
-            </select>
-
-            <label>Jurusan</label>
-            <input type="text" name="entry.193415501" required>
-
-            <label>Alamat Asal</label>
-            <input type="text" name="entry.633936452" required>
-
-            <label>Asal Sambung</label>
-            <input type="text" name="entry.150755552" placeholder="Daerah" required>
-            <input type="text" name="entry.601479644" placeholder="Desa" required>
-            <input type="text" name="entry.2045342021" placeholder="Kelompok" required>
-
-            <label>Nomor Hape Sebenarnya</label>
-            <input type="tel" name="entry.727261729" required>
-
-            <label>Nama Orang Tua / Wali Saat Emergency</label>
-            <input type="text" name="entry.1468733244" required>
-
-            <label>Nomor Hape / Telepon Orang / Wali Saat Emergency</label>
-            <input type="tel" name="entry.1587809421" required>
-
-            <div class="buttons">
-                <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
-                <button type="button" class="btn" onclick="submitForm()">Ok</button>
-            </div>
-        </form>
+    <div class="buttons">
+        <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
+        <button type="button" class="btn" onclick="submitToGoogleForm()">Saya Bersedia</button>
     </div>
+</div>
 
-    <div id="page3" class="container" style="display: none;">
-        <h2>Review Data</h2>
-        <p id="reviewData"></p>
+<script>
+    function storeButtonData(userType) {
+        localStorage.setItem('entry.346979211', userType);
+        document.getElementById('userType').value = userType;
+        showPage(2);
+    }
 
-        <form id="reviewForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf8z6hXLgam9bIhTY3vzKz608xoBKXZjhYhg5Fn3qb3luoelg/formResponse" method="POST" target="_self">
-            <!-- Hidden fields for all data -->
-            <input type="hidden" name="entry.346979211" value="">
-            <input type="hidden" name="entry.333390741" value="">
-            <input type="hidden" name="entry.2036095132" value="">
-            <input type="hidden" name="entry.533201074" value="">
-            <input type="hidden" name="entry.406062476" value="">
-            <input type="hidden" name="entry.1863767854" value="">
-            <input type="hidden" name="entry.189275634" value="">
-            <input type="hidden" name="entry.813622580" value="">
-            <input type="hidden" name="entry.1083384693" value="">
-            <input type="hidden" name="entry.193415501" value="">
-            <input type="hidden" name="entry.633936452" value="">
-            <input type="hidden" name="entry.150755552" value="">
-            <input type="hidden" name="entry.601479644" value="">
-            <input type="hidden" name="entry.2045342021" value="">
-            <input type="hidden" name="entry.727261729" value="">
-            <input type="hidden" name="entry.1468733244" value="">
-            <input type="hidden" name="entry.1587809421" value="">
+    function submitForm() {
+        const form = document.getElementById('registrationForm');
+        const formData = new FormData(form);
 
-            <label>Saya bersedia untuk mematuhi peraturan dan kegiatan PPM, serta arahan pengurus PPM</label>
-            <input type="text" name="entry.100977078" placeholder="tulis nama sebagai tanda tangan" required>
-
-            <div class="buttons">
-                <button type="submit" class="btn">Saya Bersedia</button>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        function storeButtonData(userType) {
-            localStorage.setItem('entry.346979211', userType);
-            document.getElementById('userType').value = userType;
-            showPage(2);
+        for (let [key, value] of formData.entries()) {
+            localStorage.setItem(key, value);
         }
 
-        function submitForm() {
-            const form = document.getElementById('registrationForm');
-            const formData = new FormData(form);
+        displayReviewData();
+        showPage(3);
+    }
 
-            // Store form data in localStorage
-            for (let [key, value] of formData.entries()) {
-                localStorage.setItem(key, value);
-            }
+    function displayReviewData() {
+        const reviewData = `
+            <strong>Nama Lengkap:</strong> ${localStorage.getItem('entry.333390741')}<br>
+            <strong>Nama Panggilan:</strong> ${localStorage.getItem('entry.2036095132')}<br>
+            <strong>Jenis Kelamin:</strong> ${localStorage.getItem('entry.533201074')}<br>
+            <strong>Tempat Lahir:</strong> ${localStorage.getItem('entry.406062476')}<br>
+            <strong>Tanggal Lahir:</strong> ${localStorage.getItem('entry.1863767854')}<br>
+            <strong>Universitas:</strong> ${localStorage.getItem('entry.189275634')}<br>
+            <strong>Tahun Masuk Universitas:</strong> ${localStorage.getItem('entry.813622580')}<br>
+            <strong>Tahun Masuk PPM:</strong> ${localStorage.getItem('entry.1083384693')}<br>
+            <strong>Jurusan:</strong> ${localStorage.getItem('entry.193415501')}<br>
+            <strong>Alamat Asal:</strong> ${localStorage.getItem('entry.633936452')}<br>
+            <strong>Asal Sambung - Daerah:</strong> ${localStorage.getItem('entry.150755552')}<br>
+            <strong>Asal Sambung - Desa:</strong> ${localStorage.getItem('entry.601479644')}<br>
+            <strong>Asal Sambung - Kelompok:</strong> ${localStorage.getItem('entry.2045342021')}<br>
+            <strong>Nomor Hape:</strong> ${localStorage.getItem('entry.727261729')}<br>
+            <strong>Nama Orang Tua:</strong> ${localStorage.getItem('entry.1468733244')}<br>
+            <strong>Nomor Orang Tua:</strong> ${localStorage.getItem('entry.1587809421')}<br>
+        `;
+        document.getElementById('reviewData').innerHTML = reviewData;
+    }
 
-            // Populate review form with stored data
-            document.querySelectorAll('#reviewForm input[type="hidden"]').forEach(input => {
-                const fieldName = input.name;
-                input.value = localStorage.getItem(fieldName);
-            });
+    function submitToGoogleForm() {
+        const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf8z6hXLgam9bIhTY3vzKz608xoBKXZjhYhg5Fn3qb3luoelg/formResponse?";
 
-            // Display the review data
-            displayReviewData();
+        const formData = new URLSearchParams();
+        formData.append("entry.346979211", localStorage.getItem("entry.346979211"));
+        formData.append("entry.333390741", localStorage.getItem("entry.333390741"));
+        formData.append("entry.2036095132", localStorage.getItem("entry.2036095132"));
+        formData.append("entry.533201074", localStorage.getItem("entry.533201074"));
+        formData.append("entry.406062476", localStorage.getItem("entry.406062476"));
+        formData.append("entry.1863767854", localStorage.getItem("entry.1863767854"));
+        formData.append("entry.189275634", localStorage.getItem("entry.189275634"));
+        formData.append("entry.813622580", localStorage.getItem("entry.813622580"));
+        formData.append("entry.1083384693", localStorage.getItem("entry.1083384693"));
+        formData.append("entry.193415501", localStorage.getItem("entry.193415501"));
+        formData.append("entry.633936452", localStorage.getItem("entry.633936452"));
+        formData.append("entry.150755552", localStorage.getItem("entry.150755552"));
+        formData.append("entry.601479644", localStorage.getItem("entry.601479644"));
+        formData.append("entry.2045342021", localStorage.getItem("entry.2045342021"));
+        formData.append("entry.727261729", localStorage.getItem("entry.727261729"));
+        formData.append("entry.1468733244", localStorage.getItem("entry.1468733244"));
+        formData.append("entry.1587809421", localStorage.getItem("entry.1587809421"));
+        formData.append("entry.100977078", localStorage.getItem("entry.100977078"));
 
-            // Show the review page
-            showPage(3);
-        }
+        const submitUrl = formBaseUrl + formData.toString();
+        fetch(submitUrl, { method: "POST", mode: "no-cors" })
+            .then(() => alert("Data telah disubmit"))
+            .catch((error) => console.error("Error:", error));
 
-        function displayReviewData() {
-            const reviewData = `
-                <strong>Nama Lengkap:</strong> ${localStorage.getItem('entry.333390741')}<br>
-                <strong>Nama Panggilan:</strong> ${localStorage.getItem('entry.2036095132')}<br>
-                <strong>Jenis Kelamin:</strong> ${localStorage.getItem('entry.533201074')}<br>
-                <strong>Tempat Lahir:</strong> ${localStorage.getItem('entry.406062476')}<br>
-                <strong>Tanggal Lahir:</strong> ${localStorage.getItem('entry.1863767854')}<br>
-                <strong>Universitas:</strong> ${localStorage.getItem('entry.189275634')}<br>
-                <strong>Tahun Masuk Universitas:</strong> ${localStorage.getItem('entry.813622580')}<br>
-                <strong>Tahun Masuk PPM:</strong> ${localStorage.getItem('entry.1083384693')}<br>
-                <strong>Jurusan:</strong> ${localStorage.getItem('entry.193415501')}<br>
-                <strong>Alamat Asal:</strong> ${localStorage.getItem('entry.633936452')}<br>
-                <strong>Asal Sambung:</strong> ${localStorage.getItem('entry.150755552')}<br>
-                <strong>Desa:</strong> ${localStorage.getItem('entry.601479644')}<br>
-                <strong>Kelompok:</strong> ${localStorage.getItem('entry.2045342021')}<br>
-                <strong>Nomor Hape:</strong> ${localStorage.getItem('entry.727261729')}<br>
-                <strong>Nama Orang Tua:</strong> ${localStorage.getItem('entry.1468733244')}<br>
-                <strong>Nomor Orang Tua:</strong> ${localStorage.getItem('entry.1587809421')}<br>
-            `;
-            document.getElementById('reviewData').innerHTML = reviewData;
-        }
+        // Optionally, redirect to a custom confirmation page
+        // window.location.href = "https://your-custom-confirmation-page.com";
+    }
 
-        function showPage(pageNumber) {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page3').style.display = 'none';
-            document.getElementById('page' + pageNumber).style.display = 'block';
-        }
-    </script>
+    function showPage(pageNumber) {
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('page2').style.display = 'none';
+        document.getElementById('page3').style.display = 'none';
+        document.getElementById('page' + pageNumber).style.display = 'block';
+    }
+</script>
+
 </body>
 </html>
