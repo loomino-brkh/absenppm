@@ -59,9 +59,8 @@
         .error-message {
             color: red;
             font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 10px;
             display: none;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -77,7 +76,7 @@
 
 <div id="page2" class="container" style="display:none;">
     <h1>Formulir Pendaftaran</h1>
-    <form id="registrationForm" onsubmit="validatePage2Form(); return false;">
+    <form id="registrationForm">
         <input type="text" name="entry.333390741" placeholder="Nama Lengkap" required>
         <input type="text" name="entry.2036095132" placeholder="Nama Panggilan" required>
         <select name="entry.533201074" required>
@@ -117,11 +116,11 @@
         <input type="text" name="entry.1468733244" placeholder="Nama Orang Tua / Wali Saat Emergency" required>
         <input type="text" name="entry.1587809421" placeholder="Nomor Hape / Telepon Orang Tua / Wali Saat Emergency" required>
 
-        <div class="error-message" id="errorPage2">Silahkan isi semua, jangan dikosongkan.</div>
+        <div class="error-message" id="page2Error">Silahkan isi semua, jangan dikosongkan.</div>
 
         <div class="buttons">
             <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
-            <button type="submit" class="btn">Ok</button>
+            <button type="button" class="btn" onclick="validatePage2()">Lanjut</button>
         </div>
     </form>
 </div>
@@ -131,13 +130,12 @@
     <div id="reviewData"></div>
 
     <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
-    <input type="text" id="signature" name="entry.100977078" placeholder="tulis nama sebagai tanda tangan" required>
-
-    <div class="error-message" id="errorPage3">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
+    <input type="text" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
+    <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
 
     <div class="buttons">
         <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
-        <button type="button" class="btn" onclick="validatePage3Form()">Saya Bersedia</button>
+        <button type="button" class="btn" onclick="validatePage3()">Saya Bersedia</button>
     </div>
 </div>
 
@@ -148,31 +146,21 @@
         showPage(2);
     }
 
-    function validatePage2Form() {
+    function validatePage2() {
         const form = document.getElementById('registrationForm');
         const inputs = form.querySelectorAll('input, select');
-        let allFilled = true;
+        let valid = true;
 
         inputs.forEach(input => {
-            if (!input.value) {
-                allFilled = false;
+            if (!input.value.trim()) {
+                valid = false;
             }
         });
 
-        if (allFilled) {
+        if (valid) {
             submitForm();
         } else {
-            document.getElementById('errorPage2').style.display = 'block';
-        }
-    }
-
-    function validatePage3Form() {
-        const signature = document.getElementById('signature').value;
-
-        if (signature) {
-            submitToGoogleForm();
-        } else {
-            document.getElementById('errorPage3').style.display = 'block';
+            document.getElementById('page2Error').style.display = 'block';
         }
     }
 
@@ -186,6 +174,15 @@
 
         displayReviewData();
         showPage(3);
+    }
+
+    function validatePage3() {
+        const signature = document.querySelector('input[name="entry.100977078"]').value.trim();
+        if (signature) {
+            submitToGoogleForm();
+        } else {
+            document.getElementById('page3Error').style.display = 'block';
+        }
     }
 
     function displayReviewData() {
@@ -204,11 +201,9 @@
             <strong>Asal Sambung - Desa:</strong> ${localStorage.getItem('entry.601479644')}<br>
             <strong>Asal Sambung - Kelompok:</strong> ${localStorage.getItem('entry.2045342021')}<br>
             <strong>Nomor Hape:</strong> ${localStorage.getItem('entry.727261729')}<br>
-            <strong>Nama Orang Tua / Wali Saat Emergency:</strong> ${localStorage.getItem('entry.1468733244')}<br>
-            <strong>Nomor Hape / Telepon Orang Tua / Wali Saat Emergency:</strong> ${localStorage.getItem('entry.1587809421')}<br>
-            <strong>Kategori:</strong> ${localStorage.getItem('entry.346979211')}<br>
+            <strong>Nama Orang Tua:</strong> ${localStorage.getItem('entry.1468733244')}<br>
+            <strong>Nomor Orang Tua:</strong> ${localStorage.getItem('entry.1587809421')}<br>
         `;
-
         document.getElementById('reviewData').innerHTML = reviewData;
     }
 
@@ -239,9 +234,6 @@
         fetch(submitUrl, { method: "POST", mode: "no-cors" })
             .then(() => alert("Data telah disubmit"))
             .catch((error) => console.error("Error:", error));
-
-        // Optionally, redirect to a custom confirmation page
-        // window.location.href = "https://your-custom-confirmation-page.com";
     }
 
     function showPage(pageNumber) {
