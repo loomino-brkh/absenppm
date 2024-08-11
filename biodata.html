@@ -19,6 +19,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding-right: 30px; /* Increased right padding */
         }
         h1 {
             text-align: center;
@@ -45,8 +46,13 @@
         .btn:active {
             background-color: darkgreen;
         }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
         input, select {
-            width: 100%;
+            width: calc(100% - 20px); /* Adjusted width for padding */
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
@@ -61,6 +67,12 @@
             font-size: 14px;
             display: none;
             margin-top: 10px;
+        }
+        .success-message {
+            color: green;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -77,17 +89,30 @@
 <div id="page2" class="container" style="display:none;">
     <h1>Formulir Pendaftaran</h1>
     <form id="registrationForm">
-        <input type="text" name="entry.333390741" placeholder="Nama Lengkap" required>
-        <input type="text" name="entry.2036095132" placeholder="Nama Panggilan" required>
-        <select name="entry.533201074" required>
+        <label for="namaLengkap">Nama Lengkap</label>
+        <input type="text" id="namaLengkap" name="entry.333390741" required>
+
+        <label for="namaPanggilan">Nama Panggilan</label>
+        <input type="text" id="namaPanggilan" name="entry.2036095132" required>
+
+        <label for="jenisKelamin">Jenis Kelamin</label>
+        <select id="jenisKelamin" name="entry.533201074" required>
             <option value="">Jenis Kelamin</option>
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
         </select>
-        <input type="text" name="entry.406062476" placeholder="Tempat Lahir" required>
-        <input type="date" name="entry.1863767854" required>
-        <input type="text" name="entry.189275634" placeholder="Universitas" required>
-        <select name="entry.813622580" required>
+
+        <label for="tempatLahir">Tempat Lahir</label>
+        <input type="text" id="tempatLahir" name="entry.406062476" required>
+
+        <label for="tanggalLahir">Tanggal Lahir</label>
+        <input type="date" id="tanggalLahir" name="entry.1863767854" required>
+
+        <label for="universitas">Universitas</label>
+        <input type="text" id="universitas" name="entry.189275634" required>
+
+        <label for="tahunMasukUniversitas">Tahun Masuk Universitas</label>
+        <select id="tahunMasukUniversitas" name="entry.813622580" required>
             <option value="">Tahun Masuk Universitas</option>
             <option value="2019">2019</option>
             <option value="2020">2020</option>
@@ -97,7 +122,9 @@
             <option value="2024">2024</option>
             <option value="2025">2025</option>
         </select>
-        <select name="entry.1083384693" required>
+
+        <label for="tahunMasukPPM">Tahun Masuk PPM</label>
+        <select id="tahunMasukPPM" name="entry.1083384693" required>
             <option value="">Tahun Masuk PPM</option>
             <option value="2019">2019</option>
             <option value="2020">2020</option>
@@ -107,14 +134,26 @@
             <option value="2024">2024</option>
             <option value="2025">2025</option>
         </select>
-        <input type="text" name="entry.193415501" placeholder="Jurusan" required>
-        <input type="text" name="entry.633936452" placeholder="Alamat Asal" required>
-        <input type="text" name="entry.150755552" placeholder="Asal Sambung - Daerah" required>
-        <input type="text" name="entry.601479644" placeholder="Asal Sambung - Desa" required>
-        <input type="text" name="entry.2045342021" placeholder="Asal Sambung - Kelompok" required>
-        <input type="text" name="entry.727261729" placeholder="Nomor Hape" required>
-        <input type="text" name="entry.1468733244" placeholder="Nama Orang Tua / Wali Saat Emergency" required>
-        <input type="text" name="entry.1587809421" placeholder="Nomor Hape / Telepon Orang Tua / Wali Saat Emergency" required>
+
+        <label for="jurusan">Jurusan</label>
+        <input type="text" id="jurusan" name="entry.193415501" required>
+
+        <label for="alamatAsal">Alamat Asal</label>
+        <input type="text" id="alamatAsal" name="entry.633936452" required>
+
+        <label>Asal Sambung</label>
+        <input type="text" id="asalSambungDaerah" name="entry.150755552" placeholder="Daerah" required>
+        <input type="text" id="asalSambungDesa" name="entry.601479644" placeholder="Desa" required>
+        <input type="text" id="asalSambungKelompok" name="entry.2045342021" placeholder="Kelompok" required>
+
+        <label for="nomorHape">Nomor Hape</label>
+        <input type="text" id="nomorHape" name="entry.727261729" required>
+
+        <label for="namaOrangTua">Nama Orang Tua / Wali saat Emergency</label>
+        <input type="text" id="namaOrangTua" name="entry.1468733244" required>
+
+        <label for="nomorOrangTua">Nomor Hape / Telepon Orang Tua / Wali saat Emergency</label>
+        <input type="text" id="nomorOrangTua" name="entry.1587809421" required>
 
         <div class="error-message" id="page2Error">Silahkan isi semua, jangan dikosongkan.</div>
 
@@ -130,7 +169,8 @@
     <div id="reviewData"></div>
 
     <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
-    <input type="text" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
+    <input type="text" name="entry.100977078" required placeholder="Tulis nama sebagai tanda tangan">
+
     <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
 
     <div class="buttons">
@@ -139,50 +179,55 @@
     </div>
 </div>
 
+<div id="confirmationPage" class="container" style="display:none;">
+    <h1>Terima Kasih</h1>
+    <div class="success-message">
+        Alhamdulillah Jazaa Kumullohu Khoiro, Data anda telah kami terima.
+    </div>
+    <div class="buttons">
+        <button type="button" class="btn" onclick="showPage(1)">Kembali ke Halaman Utama</button>
+    </div>
+</div>
+
 <script>
     function storeButtonData(userType) {
         localStorage.setItem('entry.346979211', userType);
-        document.getElementById('userType').value = userType;
         showPage(2);
     }
 
     function validatePage2() {
         const form = document.getElementById('registrationForm');
         const inputs = form.querySelectorAll('input, select');
-        let valid = true;
+        let isValid = true;
 
         inputs.forEach(input => {
-            if (!input.value.trim()) {
-                valid = false;
+            if (!input.value.trim() && input.required) {
+                isValid = false;
             }
         });
 
-        if (valid) {
+        if (isValid) {
             submitForm();
         } else {
             document.getElementById('page2Error').style.display = 'block';
         }
     }
 
-    function submitForm() {
-        const form = document.getElementById('registrationForm');
-        const formData = new FormData(form);
-
-        for (let [key, value] of formData.entries()) {
-            localStorage.setItem(key, value);
-        }
-
-        displayReviewData();
-        showPage(3);
-    }
-
     function validatePage3() {
         const signature = document.querySelector('input[name="entry.100977078"]').value.trim();
         if (signature) {
             submitToGoogleForm();
+            showPage(4);
         } else {
             document.getElementById('page3Error').style.display = 'block';
         }
+    }
+
+    function submitForm() {
+        const formElements = document.querySelectorAll('#registrationForm input, #registrationForm select');
+        formElements.forEach(el => localStorage.setItem(el.name, el.value));
+        showPage(3);
+        displayReviewData();
     }
 
     function displayReviewData() {
@@ -201,14 +246,14 @@
             <strong>Asal Sambung - Desa:</strong> ${localStorage.getItem('entry.601479644')}<br>
             <strong>Asal Sambung - Kelompok:</strong> ${localStorage.getItem('entry.2045342021')}<br>
             <strong>Nomor Hape:</strong> ${localStorage.getItem('entry.727261729')}<br>
-            <strong>Nama Orang Tua:</strong> ${localStorage.getItem('entry.1468733244')}<br>
-            <strong>Nomor Orang Tua:</strong> ${localStorage.getItem('entry.1587809421')}<br>
+            <strong>Nama Orang Tua / Wali saat Emergency:</strong> ${localStorage.getItem('entry.1468733244')}<br>
+            <strong>Nomor Hape / Telepon Orang Tua / Wali saat Emergency:</strong> ${localStorage.getItem('entry.1587809421')}<br>
         `;
         document.getElementById('reviewData').innerHTML = reviewData;
     }
 
     function submitToGoogleForm() {
-        const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf8z6hXLgam9bIhTY3vzKz608xoBKXZjhYhg5Fn3qb3luoelg/viewform?usp=pp_url&";
+        const formBaseUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf8z6hXLgam9bIhTY3vzKz608xoBKXZjhYhg5Fn3qb3luoelg/formResponse?";
         const formData = new URLSearchParams();
 
         formData.append("entry.346979211", localStorage.getItem("entry.346979211"));
@@ -232,7 +277,7 @@
 
         const submitUrl = formBaseUrl + formData.toString();
         fetch(submitUrl, { method: "POST", mode: "no-cors" })
-            .then(() => alert("Data telah disubmit"))
+            .then(() => showPage(4))
             .catch((error) => console.error("Error:", error));
     }
 
@@ -240,6 +285,7 @@
         document.getElementById('page1').style.display = 'none';
         document.getElementById('page2').style.display = 'none';
         document.getElementById('page3').style.display = 'none';
+        document.getElementById('confirmationPage').style.display = 'none';
         document.getElementById('page' + pageNumber).style.display = 'block';
     }
 </script>
