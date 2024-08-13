@@ -180,7 +180,7 @@
 </div>
 
 <div id="confirmationPage" class="container" style="display:none;">
-    <h1>Alhamdulillah Jazaa Kumullohu Khoiro</h1>
+    <h1>Terima Kasih</h1>
     <div class="success-message">
         Alhamdulillah Jazaa Kumullohu Khoiro, Data anda telah kami terima.
     </div>
@@ -217,7 +217,6 @@
         const signature = document.querySelector('input[name="entry.100977078"]').value.trim();
         if (signature) {
             submitToGoogleForm();
-            showPage(4);
         } else {
             document.getElementById('page3Error').style.display = 'block';
         }
@@ -226,8 +225,8 @@
     function submitForm() {
         const formElements = document.querySelectorAll('#registrationForm input, #registrationForm select');
         formElements.forEach(el => localStorage.setItem(el.name, el.value));
-        showPage(3);
         displayReviewData();
+        showPage(3);
     }
 
     function displayReviewData() {
