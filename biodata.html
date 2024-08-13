@@ -274,7 +274,7 @@
         formData.append("entry.1468733244", localStorage.getItem("entry.1468733244"));
         formData.append("entry.1587809421", localStorage.getItem("entry.1587809421"));
         // Append the "Nama Sebagai tanda tangan" with "Bersedia"
-        formData.append("entry.100977078", "Bersedia");
+        formData.append("entry.100977078", localStorage.getItem("entry.100977078"));
 
         const submitUrl = formBaseUrl + formData.toString();
         fetch(submitUrl, { method: "POST", mode: "no-cors" })
