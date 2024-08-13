@@ -19,7 +19,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding-right: 30px; /* Increased right padding */
+            padding-right: 30px;
         }
         h1 {
             text-align: center;
@@ -52,7 +52,7 @@
             font-weight: bold;
         }
         input, select {
-            width: calc(100% - 20px); /* Adjusted width for padding */
+            width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
@@ -169,17 +169,17 @@
     <div id="reviewData"></div>
 
     <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
-    <input type="text" name="entry.100977078" required placeholder="Tulis nama sebagai tanda tangan">
+    <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
 
     <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
 
     <div class="buttons">
-        <button type="button" class="btn" onclick="showPage(1)">Kembali</button>
+        <button type="button" class="btn" onclick="showPage(2)">Kembali</button>
         <button type="button" class="btn" onclick="validatePage3()">Saya Bersedia</button>
     </div>
 </div>
 
-<div id="confirmationPage" class="container" style="display:none;">
+<div id="page4" class="container" style="display:none;">
     <h1>Terima Kasih</h1>
     <div class="success-message">
         Alhamdulillah Jazaa Kumullohu Khoiro, Data anda telah kami terima.
@@ -272,7 +272,7 @@
         formData.append("entry.727261729", localStorage.getItem("entry.727261729"));
         formData.append("entry.1468733244", localStorage.getItem("entry.1468733244"));
         formData.append("entry.1587809421", localStorage.getItem("entry.1587809421"));
-        formData.append("entry.100977078", localStorage.getItem("entry.100977078"));
+        formData.append("entry.100977078", localStorage.getItem("entry.100977078")); // Ensure this value is captured
 
         const submitUrl = formBaseUrl + formData.toString();
         fetch(submitUrl, { method: "POST", mode: "no-cors" })
@@ -284,7 +284,7 @@
         document.getElementById('page1').style.display = 'none';
         document.getElementById('page2').style.display = 'none';
         document.getElementById('page3').style.display = 'none';
-        document.getElementById('confirmationPage').style.display = 'none';
+        document.getElementById('page4').style.display = 'none';
         document.getElementById('page' + pageNumber).style.display = 'block';
     }
 </script>
