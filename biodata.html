@@ -169,7 +169,7 @@
     <div id="reviewData"></div>
 
     <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
-    <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
+    <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" readonly required>
 
     <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
 
@@ -197,9 +197,8 @@
 
     function validatePage2() {
         const form = document.getElementById('registrationForm');
-        const inputs = form.querySelectorAll('input, select');
         let isValid = true;
-
+        const inputs = form.querySelectorAll('input, select');
         inputs.forEach(input => {
             if (!input.value.trim() && input.required) {
                 isValid = false;
@@ -225,6 +224,10 @@
     function submitForm() {
         const formElements = document.querySelectorAll('#registrationForm input, #registrationForm select');
         formElements.forEach(el => localStorage.setItem(el.name, el.value));
+        const namaLengkap = localStorage.getItem('entry.333390741');
+        const tandaTanganField = document.querySelector('input[name="entry.100977078"]');
+        tandaTanganField.value = namaLengkap + " Bersedia";
+        localStorage.setItem('entry.100977078', tandaTanganField.value); // Store in localStorage
         displayReviewData();
         showPage(3);
     }
