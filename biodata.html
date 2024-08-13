@@ -169,7 +169,7 @@
     <div id="reviewData"></div>
 
     <label><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
-    <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" readonly required>
+    <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
 
     <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
 
@@ -226,8 +226,9 @@
         formElements.forEach(el => localStorage.setItem(el.name, el.value));
         const namaLengkap = localStorage.getItem('entry.333390741');
         const tandaTanganField = document.querySelector('input[name="entry.100977078"]');
+        // Update the value to include "Bersedia"
         tandaTanganField.value = namaLengkap + " Bersedia";
-        localStorage.setItem('entry.100977078', tandaTanganField.value); // Store in localStorage
+        localStorage.setItem('entry.100977078', tandaTanganField.value); // Store updated value in localStorage
         displayReviewData();
         showPage(3);
     }
