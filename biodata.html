@@ -81,8 +81,8 @@
 <div id="page1" class="container">
     <h1>Registrasi Ulang Santri PPM</h1>
     <div class="buttons">
-        <button class="btn" onclick="storeButtonData('Mubaligh/ot')">Mubaligh/ot</button>
-        <button class="btn" onclick="storeButtonData('Bukan Mubaligh/ot')">Bukan Mubaligh/ot</button>
+        <button class="btn" onclick="storeButtonData('KTB')">Mubaligh/ot</button>
+        <button class="btn" onclick="storeButtonData('RGL')">Bukan Mubaligh/ot</button>
     </div>
 </div>
 
@@ -98,8 +98,8 @@
         <label for="jenisKelamin">Jenis Kelamin</label>
         <select id="jenisKelamin" name="entry.533201074" required>
             <option value="">Jenis Kelamin</option>
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
+            <option value="LK">Laki-laki</option>
+            <option value="PR">Perempuan</option>
         </select>
 
         <label for="tempatLahir">Tempat Lahir</label>
@@ -168,7 +168,7 @@
     <h1>Review Data</h1>
     <div id="reviewData"></div>
 <br>
-    <label for="namaTandaTangan"><strong>Dengan ini, saya bersedia menaati dan mengikuti peraturan dan kegiatan PPM, serta arahan pengurus PPM</strong></label>
+    <label for="namaTandaTangan"><strong>Dengan ini, saya menyatakan bersedia menaati dan mengikuti keseluruhan peraturan dan kegiatan PPM, serta arahan dari pengurus PPM.</strong></label>
     <input type="text" id="namaTandaTangan" name="entry.100977078" placeholder="Tulis nama sebagai tanda tangan" required>
 
     <div class="error-message" id="page3Error">Silahkan tuliskan nama anda sebagai tanda tangan.</div>
@@ -216,6 +216,7 @@
     function validatePage3() {
         const signature = document.querySelector('input[name="entry.100977078"]').value.trim();
         if (signature) {
+            localStorage.setItem('entry.100977078', signature);
             submitToGoogleForm();
         } else {
             document.getElementById('page3Error').style.display = 'block';
